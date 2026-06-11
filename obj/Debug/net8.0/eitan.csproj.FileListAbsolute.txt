@@ -1,0 +1,9 @@
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.csproj.AssemblyReference.cache
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.AssemblyInfo.cs
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\OneDrive\Desktop\final_proj\obj\Debug\net8.0\eitan.sourcelink.json

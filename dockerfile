@@ -24,4 +24,4 @@ ENV ASPNETCORE_URLS=http://+:3000
 
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "YourProjectName.dll"]
+ENTRYPOINT ["dotnet", "eitan.dll"]

@@ -130,17 +130,17 @@ public class Game
 
             if (player is OnlinePlayer p)
             {
-                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res));
+                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
                 await p.stream.WriteAsync(responseBytes, 0, responseBytes.Length);
             }
 
             if (enemy is OnlinePlayer e)
             {
-                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res));
+                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
                 await e.stream.WriteAsync(responseBytes, 0, responseBytes.Length);
             }
 
-            Console.WriteLine("sent : \n" + JsonSerializer.Serialize(res));
+            Console.WriteLine("sent : \n" + JsonSerializer.Serialize(res) + "\n");
         };
 
         Task gameStatusUpdate = Task.Run(async () =>

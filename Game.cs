@@ -81,33 +81,6 @@ public class Game
 
         GameUnit?[,] tempBoard = new GameUnit[GRID_HEIGHT * 2, GRID_WIDTH];
 
-
-        // Copy units from player & enemy to the temp board 
-        foreach (GameUnit? u in player.board)
-        {
-            if (u == null) continue;
-            tempBoard[u.startY, u.startX] = u.Clone();
-        }
-        foreach (GameUnit? u in enemy.board)
-        {
-            if (u == null) continue;
-            tempBoard[u.startY + GRID_HEIGHT, u.startX] = u.Clone();
-            tempBoard[u.startY + GRID_HEIGHT, u.startX]!.startY += GRID_HEIGHT;
-        }
-
-        if (!GameUtils.BothHaveUnits(tempBoard, player, enemy))
-        {
-            System.Console.WriteLine("No units on one team.");
-            return;
-        }
-
-        CancellationTokenSource source = new();
-
-        foreach (GameUnit g in tempBoard)
-        {
-            if (g != null) Task.Run(() => g.Attack(tempBoard, source.Token));
-        }
-
         Func<string, Task> sendToOnlinePlayers = async (string type) =>
         {
             List<GameUnit> units = new();
@@ -142,6 +115,36 @@ public class Game
 
             Console.WriteLine("sent : \n" + JsonSerializer.Serialize(res) + "\n");
         };
+
+
+        // Copy units from player & enemy to the temp board 
+        foreach (GameUnit? u in player.board)
+        {
+            if (u == null) continue;
+            tempBoard[u.startY, u.startX] = u.Clone();
+        }
+        foreach (GameUnit? u in enemy.board)
+        {
+            if (u == null) continue;
+            tempBoard[u.startY + GRID_HEIGHT, u.startX] = u.Clone();
+            tempBoard[u.startY + GRID_HEIGHT, u.startX]!.startY += GRID_HEIGHT;
+        }
+
+        if (!GameUtils.BothHaveUnits(tempBoard, player, enemy))
+        {
+            System.Console.WriteLine("No units on one team.");
+            return;
+        }
+
+        await sendToOnlinePlayers("ongoing");
+        await Task.Delay(5000); // give a momonet for the players to see the boards
+
+        CancellationTokenSource source = new();
+
+        foreach (GameUnit g in tempBoard)
+        {
+            if (g != null) Task.Run(() => g.Attack(tempBoard, source.Token));
+        }
 
         Task gameStatusUpdate = Task.Run(async () =>
         {

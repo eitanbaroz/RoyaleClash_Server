@@ -77,7 +77,7 @@ class TcpServer
                 gold = player.gold,
                 units = player.board.Cast<GameUnit>().Where(x => x != null).ToArray() // convert to 1D array from 2D
             }
-        }));
+        }) + "\n");
 
         await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
 
@@ -122,7 +122,7 @@ class TcpServer
                     }
                 };
 
-                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res));
+                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
                 await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
             }
 
@@ -144,7 +144,7 @@ class TcpServer
                     }
                 };
 
-                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res));
+                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
                 await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
             }
 

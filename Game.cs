@@ -136,6 +136,12 @@ public class Game
             return;
         }
 
+        foreach (GameUnit g in tempBoard)
+        {
+            g.gameX = g.startX;
+            g.gameY = g.startY;
+        }
+
         await sendToOnlinePlayers("ongoing");
         await Task.Delay(5000); // give a momonet for the players to see the boards
 

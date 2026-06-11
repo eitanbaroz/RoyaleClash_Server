@@ -76,6 +76,7 @@ public class AiPlayer : Player
                     Your goal is to build the strongest possible board using gold efficiently.
 
                     The enemy is above you, the lower the y value the closer you are to them, meaning range should have lower y value.
+                    Your board size is 6x6 (from 0 - 5);
                     ";
 
                 var requestBody = new
@@ -202,15 +203,24 @@ public class AiPlayer : Player
 
         if (move.y < 0 || move.y >= board.GetLength(0) ||
             move.x < 0 || move.x >= board.GetLength(1))
-            throw new Exception("Invalid board position");
+        {
+            System.Console.WriteLine("Invalid board position");
+            return;
+        }
 
         if (move.index < 0 || move.index >= shop.currentRotation.Count)
-            throw new Exception("Invalid shop index");
+        {
+            System.Console.WriteLine("Invalid shop index");
+            return;
+        }
 
         var shopItem = shop.currentRotation[move.index];
 
         if (shopItem?.unit == null)
-            throw new Exception("Shop unit is null");
+        {
+            System.Console.WriteLine("Shop unit is null");
+            return;
+        }
 
         var clone = shopItem.unit.Clone();
 

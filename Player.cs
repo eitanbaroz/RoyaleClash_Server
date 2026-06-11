@@ -74,6 +74,8 @@ public class AiPlayer : Player
                     If a position is taken, choose another valid empty position.
 
                     Your goal is to build the strongest possible board using gold efficiently.
+
+                    The enemy is above you, the lower the y value the closer you are to them, meaning range should have lower y value.
                     ";
 
                 var requestBody = new

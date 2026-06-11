@@ -138,8 +138,11 @@ public class Game
 
         foreach (GameUnit g in tempBoard)
         {
-            g.gameX = g.startX;
-            g.gameY = g.startY;
+            if (g != null)
+            {
+                g.gameX = g.startX;
+                g.gameY = g.startY;
+            }
         }
 
         await sendToOnlinePlayers("ongoing");

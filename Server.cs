@@ -86,80 +86,80 @@ class TcpServer
         List<Card> EnemyDeck = [CardDatabase.GetCard(1), CardDatabase.GetCard(2), CardDatabase.GetCard(3), CardDatabase.GetCard(4), CardDatabase.GetCard(5), CardDatabase.GetCard(6), CardDatabase.GetCard(7), CardDatabase.GetCard(8), CardDatabase.GetCard(9)];
         var enemy = new AiPlayer(100, EnemyDeck, 6, 5, 100);
 
-        // try
-        // {
-        while (true)
+        try
         {
-            // await get data from the client
-            int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
-            if (bytesRead == 0) break;
-
-            string message = Encoding.UTF8.GetString(buffer, 0, bytesRead); // UTF8- a form of encryption....TD
-            Console.WriteLine($"Received: {message}");
-
-            // process the user request
-            ClientRequest? req = JsonSerializer.Deserialize<ClientRequest>(message);
-
-            if (req == null) continue;
-
-            else if (req.type == "buy")
+            while (true)
             {
-                int unitId = ((JsonElement)req.data).GetInt32();
+                // await get data from the client
+                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                if (bytesRead == 0) break;
 
-                Console.WriteLine($"Buying unit index: {unitId}");
+                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead); // UTF8- a form of encryption....TD
+                Console.WriteLine($"Received: {message}");
 
-                player!.shop!.Buy(unitId);
+                // process the user request
+                ClientRequest? req = JsonSerializer.Deserialize<ClientRequest>(message);
 
-                // send the next shop 
-                ServerResponse res = new ServerResponse()
+                if (req == null) continue;
+
+                else if (req.type == "buy")
                 {
-                    type = "shop",
-                    data = new AfterBuy()
+                    int unitId = ((JsonElement)req.data).GetInt32();
+
+                    Console.WriteLine($"Buying unit index: {unitId}");
+
+                    player!.shop!.Buy(unitId);
+
+                    // send the next shop 
+                    ServerResponse res = new ServerResponse()
                     {
-                        shop = player.GetShopRotation(),
-                        gold = player.gold,
-                        units = player.board.Cast<GameUnit>().Where(x => x != null).ToArray() // convert to 1D array from 2D
-                    }
-                };
+                        type = "shop",
+                        data = new AfterBuy()
+                        {
+                            shop = player.GetShopRotation(),
+                            gold = player.gold,
+                            units = player.board.Cast<GameUnit>().Where(x => x != null).ToArray() // convert to 1D array from 2D
+                        }
+                    };
 
-                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
-                await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
-            }
+                    responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
+                    await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
+                }
 
-            else if (req.type == "start_battle")
-            {
-                Game game = new Game(player, enemy);
-                await game.Run();
-            }
-
-            else if (req.type == "RecieveAfterCombat")
-            {
-                ServerResponse res = new ServerResponse()
+                else if (req.type == "start_battle")
                 {
-                    type = "aftercombat",
-                    data = new AfterCombat()
+                    Game game = new Game(player, enemy);
+                    await game.Run();
+                }
+
+                else if (req.type == "RecieveAfterCombat")
+                {
+                    ServerResponse res = new ServerResponse()
                     {
-                        playerhealth = player.health,
-                        enemyhealth = enemy.health
-                    }
-                };
+                        type = "aftercombat",
+                        data = new AfterCombat()
+                        {
+                            playerhealth = player.health,
+                            enemyhealth = enemy.health
+                        }
+                    };
 
-                responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
-                await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
+                    responseBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(res) + "\n");
+                    await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
+                }
+
+                else continue;
             }
-
-            else continue;
         }
-        // }
-        // catch (Exception ex)
-        // {
-        //     Console.WriteLine("Error: " + ex.Message);
-        // }
-        // finally
-        // {
-        //     Console.WriteLine("Client disconnected.");
-        //     client.Close();
-        // }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Client disconnected.");
+            client.Close();
+        }
     }
 }
 

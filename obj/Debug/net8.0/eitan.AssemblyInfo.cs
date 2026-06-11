@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eitan")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5b692c0d7db0bf9ae8205ec36590d28d29ea054")]
 [assembly: System.Reflection.AssemblyProductAttribute("eitan")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eitan")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -157,7 +157,7 @@ public class Game
         // wait for player loss 
         while (GameUtils.BothHaveUnits(tempBoard, player, enemy))
         {
-            System.Console.WriteLine(GameUtils.GetLiveUnitCount(tempBoard, player) + " ," + GameUtils.GetLiveUnitCount(tempBoard, enemy));
+            // System.Console.WriteLine(GameUtils.GetLiveUnitCount(tempBoard, player) + " ," + GameUtils.GetLiveUnitCount(tempBoard, enemy));
         }
         source.Cancel();
 

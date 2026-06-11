@@ -1,0 +1,115 @@
+[
+    {
+        "id": 1,
+        "name": "archy",
+        "type": "Archer",
+        "role": "Weak backline DPS - early game unit",
+        "cost": 1,
+        "health": 2,
+        "attack": 3,
+        "attackSpeed": 5,
+        "moveSpeed": 4,
+        "range": 6
+    },
+    {
+        "id": 2,
+        "name": "elon",
+        "type": "Archer",
+        "role": "Faster backline DPS - early carry unit",
+        "cost": 2,
+        "health": 2,
+        "attack": 4,
+        "attackSpeed": 6,
+        "moveSpeed": 4,
+        "range": 7
+    },
+    {
+        "id": 3,
+        "name": "wolve",
+        "type": "Warrior",
+        "role": "Frontline tank",
+        "cost": 1,
+        "health": 8,
+        "attack": 3,
+        "attackSpeed": 3,
+        "moveSpeed": 3
+    },
+    {
+        "id": 4,
+        "name": "yasuo",
+        "type": "Warrior",
+        "role": "Frontline fighter",
+        "cost": 2,
+        "health": 7,
+        "attack": 4,
+        "attackSpeed": 4,
+        "moveSpeed": 3
+    },
+    {
+        "id": 5,
+        "name": "naz",
+        "type": "Mage",
+        "role": "High damage fragile carry",
+        "cost": 3,
+        "health": 3,
+        "attack": 8,
+        "attackSpeed": 5,
+        "moveSpeed": 6,
+        "range": 9
+    },
+    {
+        "id": 6,
+        "name": "bjorn",
+        "type": "Hero",
+        "role": "Strong frontline carry",
+        "cost": 1,
+        "health": 9,
+        "attack": 5,
+        "attackSpeed": 4,
+        "moveSpeed": 4
+    },
+    {
+        "id": 7,
+        "name": "jagob",
+        "type": "Hero",
+        "role": "Balanced fighter",
+        "cost": 2,
+        "health": 8,
+        "attack": 6,
+        "attackSpeed": 5,
+        "moveSpeed": 5
+    },
+    {
+        "id": 8,
+        "name": "zyn",
+        "type": "Hero",
+        "role": "Flexible hybrid unit",
+        "cost": 1,
+        "health": 7,
+        "attack": 5,
+        "attackSpeed": 6,
+        "moveSpeed": 6
+    },
+    {
+        "id": 9,
+        "name": "reen",
+        "type": "Warrior",
+        "role": "Mid tank",
+        "cost": 2,
+        "health": 6,
+        "attack": 4,
+        "attackSpeed": 4,
+        "moveSpeed": 3
+    },
+    {
+        "id": 10,
+        "name": "pear",
+        "type": "Warrior",
+        "role": "Late tank bruiser",
+        "cost": 3,
+        "health": 10,
+        "attack": 5,
+        "attackSpeed": 3,
+        "moveSpeed": 2
+    }
+]

@@ -1,0 +1,70 @@
+{
+    "game_overview": {
+        "description": "A strategy-based auto-battler where players build teams using cards, place units on a board, and battle in rounds until one player is defeated."
+    },
+    "objective": {
+        "goal": "Reduce the opponent's health to 0 by winning battles.",
+        "damage_per_win": 20
+    },
+    "players": {
+        "starting_health": 100
+    },
+    "round_system": {
+        "phases": [
+            "purchase_phase",
+            "combat_phase"
+        ]
+    },
+    "gold_system": {
+        "base_gold_per_round": 10,
+        "carryover": false
+    },
+    "shop_phase": {
+        "cards_offered": 3,
+        "selection": "random_from_deck",
+        "actions": [
+            "buy_unit"
+        ],
+        "rules": {
+            "max_cards_per_turn": 1,
+            "card_selection_index_range": "0-2",
+            "must_not_buy_more_than_one_card": true
+        }
+    },
+    "combat_phase": {
+        "type": "auto_battle",
+        "unit_behavior": [
+            "find_targets",
+            "move_if_applicable",
+            "attack_based_on_type"
+        ],
+        "ends_when": "one_player_has_no_units"
+    },
+    "placement_rules": {
+        "unit_placement": "grid_based",
+        "rules": [
+            "cannot_place_on_occupied_position",
+            "must_place_on_empty_tile_only",
+            "each tile (x,y) can contain at most one unit"
+        ]
+    },
+    "units": {
+        "properties": [
+            "health",
+            "attack",
+            "position",
+            "behavior"
+        ]
+    },
+    "round_end": {
+        "loser": "player_with_no_units",
+        "effect": "loses_20_health"
+    },
+    "progression": {
+        "units_persist_between_rounds": true,
+        "players_build_on_previous_board": true
+    },
+    "win_condition": {
+        "condition": "opponent_health_reaches_zero"
+    }
+}

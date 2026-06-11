@@ -1,0 +1,6 @@
+@eitan_HostAddress = http://localhost:5244
+
+GET {{eitan_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

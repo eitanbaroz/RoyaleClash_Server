@@ -171,7 +171,7 @@ app.MapGet("/setusercards", (string token, string cardjson, AppDbContext db) =>
 });
 
 
-TcpServer server = new TcpServer("127.0.0.1", 5070);
+TcpServer server = new TcpServer("0.0.0.0", 5070);
 
 Task.WaitAll(app.RunAsync(), server.StartAsync());
 
